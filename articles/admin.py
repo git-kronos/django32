@@ -4,17 +4,19 @@ from .models import Article
 
 # Register your models here.
 class ArticleAdmin(admin.ModelAdmin):
-    '''
-        Admin View for
-    '''
-    list_display = ('id', 'title',)
-    # list_filter = ('',)
-    # inlines = [
-    #     Inline,
-    # ]
-    # raw_id_fields = ('',)
+    list_display = (
+        'id',
+        'title',
+        'timestamp',
+        'slug',
+        'updated',
+        'publish'
+    )
     readonly_fields = ('id',)
-    search_fields = ('title', 'content')
+    search_fields = (
+        'title',
+        'content'
+    )
 
 
 admin.site.register(Article, ArticleAdmin)
