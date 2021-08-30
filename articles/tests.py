@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.test import TestCase
 from django.utils.text import slugify
 
@@ -49,3 +50,13 @@ class ArticleTest(TestCase):
 
     def test_user_added_slug_unique(self):
         pass
+    
+    def test_article_search_manager(self):
+        qs = Article.objects.search(query="hello world")
+        self.assertEqual(qs.count(), self.number_of_articles)
+        
+        qs = Article.objects.search(query="world")
+        self.assertEqual(qs.count(), self.number_of_articles)
+        
+        qs = Article.objects.search(query="something else")
+        self.assertEqual(qs.count(), self.number_of_articles)
