@@ -9,11 +9,7 @@ from .models import Article
 
 def article_search_view(request):
     query = request.GET.get('q')
-    qs = Article.objects.all()
-    if query is not None:
-        lookups = Q(title__icontains=query) | Q(content__icontains=query)
-        qs = Article.objects.filter(lookups)
-
+    qs = Article.objects.search(query=query)
     context = {
         'object_list': qs
     }
