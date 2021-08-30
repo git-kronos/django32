@@ -5,10 +5,11 @@ Index
 {% endblock title %}
 
 {% block content %}
+<a href="{% url 'article-create' %}"><button>Create Article</button></a>
 
 <ul>
 	{% for x in object_list %}
-	<li><a href="/articles/{{x.slug}}">{{ x.title }} - {{ x.content }}</a></li>
+	<li><a href="{{x.get_absolute_url}}">{{ x.title }} - {{ x.content }}</a></li>
 	{% endfor %}
 </ul>
 
