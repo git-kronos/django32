@@ -2,8 +2,8 @@ venv:
 	C:/Python/Python36/python.exe -m venv venv
 
 init:
-	pip install -r requirements.txt
 	python -m pip install --upgrade pip
+	pip install -r requirements.txt
 
 serve:
 	python manage.py runserver
