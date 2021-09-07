@@ -5,7 +5,8 @@ Index
 {% endblock title %}
 
 {% block content %}
-<a href="{% url 'article-create' %}">Create Article</a>
+<a href="{% url 'articles:create' %}">Create Article</a>
+<a href="{% url 'articles:detail' slug='hello-world' %}">Hello world article</a>
 
 <ol>
 	{% for x in object_list %}

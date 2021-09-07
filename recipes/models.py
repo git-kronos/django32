@@ -1,6 +1,7 @@
 import pint
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from .validators import validate_unit_of_measure
 from .utils import number_str_to_float
 
@@ -15,6 +16,15 @@ class Recipe(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+
+    def get_absolute_url(self):
+        return reverse("recipes:detail", kwargs={"id": self.id})
+
+    def get_edit_url(self):
+        return reverse("recipes:update", kwargs={"id": self.id})
+
+    def get_ingredients_children(self):
+        return self.recipeingredient_set.all()
 
 
 class RecipeIngredient(models.Model):
@@ -31,6 +41,9 @@ class RecipeIngredient(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
+    def get_absolute_url(self):
+        return
+
     def save(self, *args, **kwargs):
         qty = self.quantity
         qty_as_float, qty_as_float_success = number_str_to_float(qty)
@@ -45,7 +58,6 @@ class RecipeIngredient(models.Model):
             return None
         ureg = pint.UnitRegistry(system=system)
         measurement = self.quantity_as_float * ureg[self.unit]
-        print('measurement = ', measurement)
         return measurement
 
     def as_mks(self):
