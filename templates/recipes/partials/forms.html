@@ -1,0 +1,29 @@
+<form action="." method="POST" hx-post="." hx-swap="outerHTML">
+    {% if message %}<p>{{message}}</p>{% endif %}
+    {% csrf_token %}
+    <!-- {{form.as_p}}
+    {% if formset %}
+        <h3>Ingredients</h3>
+        {{ formset.as_p }}
+    {% endif %} -->
+    
+    {% for field in form  %}
+        <div class="{%if field.field.required %}{{form.required_css_class}}{% endif %}">
+        {{field.errors}} {{field.label_tag}} {{field}}
+        {%if field.help_text %} {{ field.help_text|safe }} {% endif %}
+        </div>
+    {% endfor %}
+    {% if formset %}
+        <h3>Ingredients</h3>
+        {{ formset.management_form }}
+        <div id="ingredient-form-list">
+            {% for form in formset %}
+                <div class="ingredient-form">{{ form.as_p }}</div>
+            {% endfor %}
+            
+        </div>
+        <div id='empty-form' class='hidden'>{{ formset.empty_form.as_p }}</div>
+        <button id="add-more" type="button">Add More</button>
+    {% endif %}
+    <button type="submit" style="margin-top:10px">Save</button>
+</form>
