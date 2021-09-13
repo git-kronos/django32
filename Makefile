@@ -20,3 +20,5 @@ gen-key:
 
 test:
 	python manage.py test
+
+# py manage.py dumpdata recipes --indent 4 > fixtures/recipes.json

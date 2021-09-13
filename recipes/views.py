@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.forms.models import modelformset_factory
 from .forms import RecipeForm, RecipeIngredientForm
 from .models import Recipe, RecipeIngredient
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -22,6 +23,20 @@ def recipe_detail_view(request, id=None):
         'object': obj
     }
     return render(request, 'recipes/detail.html', context)
+
+
+@login_required
+def recipe_detail_hx_view(request, id=None):
+    try:
+        obj = Recipe.objects.get(id=id, user=request.user)
+    except Exception as e:
+        obj = None
+    if obj is None:
+        return HttpResponse("Not Found")
+    context = {
+        'object': obj
+    }
+    return render(request, 'recipes/partials/detail.html', context)
 
 
 @login_required

@@ -1,0 +1,79 @@
+[
+{
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "name": "Grilled Chicken",
+        "description": "My Description",
+        "directions": "My Directions",
+        "timestamp": "2021-09-01T15:17:35.180Z",
+        "updated": "2021-09-07T19:16:39.040Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 1,
+    "fields": {
+        "recipe": 1,
+        "name": "Grilled Chicken",
+        "description": "",
+        "quantity": "1 1/2",
+        "quantity_as_float": 1.5,
+        "unit": "oz",
+        "directions": "",
+        "timestamp": "2021-09-01T15:26:40.343Z",
+        "updated": "2021-09-07T19:16:39.681Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 2,
+    "fields": {
+        "recipe": 1,
+        "name": "Salsa",
+        "description": "",
+        "quantity": "1",
+        "quantity_as_float": 1.0,
+        "unit": "grams",
+        "directions": "",
+        "timestamp": "2021-09-07T15:59:19.995Z",
+        "updated": "2021-09-07T19:16:40.690Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 11,
+    "fields": {
+        "recipe": 1,
+        "name": "noodels",
+        "description": null,
+        "quantity": "500",
+        "quantity_as_float": 500.0,
+        "unit": "grams",
+        "directions": null,
+        "timestamp": "2021-09-07T18:53:45.735Z",
+        "updated": "2021-09-07T19:16:41.360Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 12,
+    "fields": {
+        "recipe": 1,
+        "name": "pasta",
+        "description": null,
+        "quantity": "300",
+        "quantity_as_float": 300.0,
+        "unit": "grams",
+        "directions": null,
+        "timestamp": "2021-09-07T19:04:11.536Z",
+        "updated": "2021-09-07T19:16:42.253Z",
+        "active": true
+    }
+}
+]
