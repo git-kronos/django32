@@ -7,6 +7,7 @@ from .utils import slugify_instance_title
 
 User = settings.AUTH_USER_MODEL
 
+
 # Create your models here.
 class ArticleQuerySet(models.QuerySet):
     def search(self, query=None):
@@ -35,9 +36,13 @@ class Article(models.Model):
 
     objects = ArticleManager()
 
+    @property
+    def name(self):
+        return self.title
+
     def get_absolute_url(self):
-        return reverse("articles:detail", kwargs={"slug":self.slug})
-    
+        return reverse("articles:detail", kwargs={"slug": self.slug})
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 

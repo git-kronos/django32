@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from .models import Article
 from .utils import slugify_instance_title
 
+
 class ArticleTest(TestCase):
     def setUp(self) -> None:
         self.number_of_articles = 500
@@ -33,7 +34,7 @@ class ArticleTest(TestCase):
             slug = obj.slug
             slugify_title = slugify(title)
             self.assertNotEqual(slug, slugify_title)
-    
+
     def test_slugify_insance_title(self):
         obj = Article.objects.all().last()
         new_slugs = []
@@ -42,7 +43,7 @@ class ArticleTest(TestCase):
             new_slugs.append(instance.slug)
         unique_slugs = list(set(new_slugs))
         self.assertEqual(len(new_slugs), len(unique_slugs))
-    
+
     def test_slugify_instance_title_redux(self):
         slug_list = Article.objects.all().values_list('slug', flat=True)
         unique_slug_list = list(set(slug_list))
@@ -50,13 +51,13 @@ class ArticleTest(TestCase):
 
     def test_user_added_slug_unique(self):
         pass
-    
+
     def test_article_search_manager(self):
         qs = Article.objects.search(query="hello world")
         self.assertEqual(qs.count(), self.number_of_articles)
-        
+
         qs = Article.objects.search(query="world")
         self.assertEqual(qs.count(), self.number_of_articles)
-        
+
         qs = Article.objects.search(query="something else")
         self.assertEqual(qs.count(), self.number_of_articles)
