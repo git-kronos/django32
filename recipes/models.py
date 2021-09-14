@@ -45,7 +45,11 @@ class RecipeIngredient(models.Model):
     active = models.BooleanField(default=True)
 
     def get_absolute_url(self):
-        return
+        return self.recipe.get_absolute_url()
+
+    def get_hx_edit_url(self):
+        return reverse("recipes:hx-ingredient-detail",
+                       kwargs={"id": self.id, 'parent_id': self.recipe.id})
 
     def save(self, *args, **kwargs):
         qty = self.quantity
@@ -70,7 +74,3 @@ class RecipeIngredient(models.Model):
     def as_imperial(self):
         measurement = self.convert_to_system(system='imperial')
         return measurement.to_base_units()
-
-
-# class RecipeImage(models.Model):
-#     recipe = ''
