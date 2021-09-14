@@ -21,4 +21,7 @@ gen-key:
 test:
 	python manage.py test
 
+sta-tic:
+	python manage.py collectstatic
+
 # py manage.py dumpdata recipes --indent 4 > fixtures/recipes.json

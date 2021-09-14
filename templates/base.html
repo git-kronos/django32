@@ -1,25 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title%} Titlle {% endblock %}</title>
 	<script src="https://unpkg.com/htmx.org@1.5.0"></script>
-	<style>
-	.htmx-indicator{
-	display: none;
-	}
-	.htmx-request .htmx-indicator{
-	display: inline;
-	}
-	.htmx-inverted-indicator{
-	display: inline;
-	}
-	.htmx-request .htmx-inverted-indicator{
-	display: none;
-	}
-
-	</style>
+	<link rel="stylesheet" href="{% static '/recipes/recipes-htmx.css' %}">
 </head>
 <body>
 <h1>Hello world</h1>
